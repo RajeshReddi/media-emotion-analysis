@@ -1,4 +1,5 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1xLqnea0mIzmqt4fuAR3Dyy60uLEBpwmv)
+  
 # Media Emotion Analysis in Geopolitical News
 
 This project analyzes emotional framing in real-world geopolitical news articles using Natural Language Processing (NLP) and deep learning techniques.
@@ -21,11 +22,22 @@ This project analyzes emotional framing in real-world geopolitical news articles
 - Sentence-level emotion prediction
 - Phase-wise emotion aggregation and visualization
 
+## Dataset
+- The dataset consists of **30 curated geopolitical news records**.
+- Each record contains cleaned text, conflict phase labels (before/during/after), and emotion annotations.
+- The dataset was created and processed in **Google Colab** and is included in this repository for transparency and reproducibility.
+
 ## Output
 - Generated comparative emotion distribution plots across conflict phases
 - Derived analytical insights into emotional framing in geopolitical news coverage
 
 ## Notes
-This project was developed and executed using Google Colab.  
-Notebook execution and experiments were performed in a cloud-based environment.
+- This project was developed and executed using Google Colab.
+- The notebook demonstrates the complete pipeline from data preprocessing to visualization.
+
+## Author
+**Rajesh Reddy**  
+📧 Email: rajesh.reddi06@gmail.com  
+🌐 GitHub: https://github.com/RajeshReddi
+
 
