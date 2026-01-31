@@ -1,2 +1,31 @@
-# media-emotion-analysis
-Emotion analysis of geopolitical news using NLP and deep learning
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1xLqnea0mIzmqt4fuAR3Dyy60uLEBpwmv)
+# Media Emotion Analysis in Geopolitical News
+
+This project analyzes emotional framing in real-world geopolitical news articles using Natural Language Processing (NLP) and deep learning techniques.
+
+## Overview
+- Developed an end-to-end NLP pipeline to study emotional patterns in geopolitical news reporting.
+- Trained deep learning–based emotion classification models and applied sentence-level emotion prediction to news articles.
+- Aggregated emotions across different conflict phases (before, during, after) to analyze shifts in journalistic tone.
+
+## Tech Stack
+- Python  
+- TensorFlow / Keras (Deep Learning Models)  
+- Natural Language Processing (Tokenization, Padding, Sentence Segmentation)  
+- Pandas, NumPy, Matplotlib  
+
+## Workflow
+- CSV-based news article ingestion
+- Text preprocessing and tokenization
+- Deep learning model training and evaluation
+- Sentence-level emotion prediction
+- Phase-wise emotion aggregation and visualization
+
+## Output
+- Generated comparative emotion distribution plots across conflict phases
+- Derived analytical insights into emotional framing in geopolitical news coverage
+
+## Notes
+This project was developed and executed using Google Colab.  
+Notebook execution and experiments were performed in a cloud-based environment.
+
