@@ -1,43 +1,142 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1xLqnea0mIzmqt4fuAR3Dyy60uLEBpwmv)
-  
-# Media Emotion Analysis in Geopolitical News
 
-This project analyzes emotional framing in real-world geopolitical news articles using Natural Language Processing (NLP) and deep learning techniques.
+# 🔥 Media Emotion Intelligence  
+### Emotion Analysis of Geopolitical News using Deep Learning
 
-## Overview
-- Developed an end-to-end NLP pipeline to study emotional patterns in geopolitical news reporting.
-- Trained deep learning–based emotion classification models and applied sentence-level emotion prediction to news articles.
-- Aggregated emotions across different conflict phases (before, during, after) to analyze shifts in journalistic tone.
+🚀 **Live Demo:**  
+https://rajeshreddi-media-analysis.hf.space
 
-## Tech Stack
-- Python  
-- TensorFlow / Keras (Deep Learning Models)  
-- Natural Language Processing (Tokenization, Padding, Sentence Segmentation)  
-- Pandas, NumPy, Matplotlib  
+---
 
-## Workflow
-- CSV-based news article ingestion
-- Text preprocessing and tokenization
-- Deep learning model training and evaluation
-- Sentence-level emotion prediction
-- Phase-wise emotion aggregation and visualization
+## 📌 Project Overview
 
-## Dataset
-- The dataset consists of **30 curated geopolitical news records**.
-- Each record contains cleaned text, conflict phase labels (before/during/after), and emotion annotations.
-- The dataset was created and processed in **Google Colab** and is included in this repository for transparency and reproducibility.
+This project analyzes emotional framing in real-world geopolitical news articles using Natural Language Processing (NLP) and deep learning.
 
-## Output
-- Generated comparative emotion distribution plots across conflict phases
-- Derived analytical insights into emotional framing in geopolitical news coverage
+It performs:
 
-## Notes
-- This project was developed and executed using Google Colab.
-- The notebook demonstrates the complete pipeline from data preprocessing to visualization.
+- Article-level emotion classification  
+- Sentence-level emotion prediction  
+- Aggregated emotion distribution visualization  
+- Emotional trend progression across sentences  
 
-## Author
+The system is deployed as a cloud-based web application using Docker and HuggingFace Spaces.
+
+---
+
+## 🧠 Problem Statement
+
+News media often frames geopolitical events with varying emotional tones.  
+This project aims to:
+
+- Quantify emotional polarity in news reporting  
+- Analyze shifts in tone across conflict phases  
+- Provide interpretable visual emotion analytics  
+
+---
+
+## ⚙️ Tech Stack
+
+**Backend & ML**
+- Python
+- TensorFlow / Keras (BiLSTM Model)
+- Scikit-learn
+- NumPy
+- Pandas
+
+**Frontend**
+- Flask
+- Chart.js (Interactive Graphs)
+- HTML / CSS (Custom Premium UI)
+
+**Deployment**
+- Docker
+- HuggingFace Spaces (Cloud Hosting)
+
+---
+
+## 🏗 System Architecture
+
+1. User inputs geopolitical news article  
+2. Text is split into sentences  
+3. Tokenization & padding applied  
+4. BiLSTM model predicts emotion probabilities  
+5. Sentence-level probabilities are aggregated  
+6. Visualizations generated:
+   - Article-level bar chart  
+   - Sentence-level breakdown table  
+   - Emotional trend line graph  
+
+---
+
+## 📊 Model Details
+
+- Architecture: Bidirectional LSTM (BiLSTM)
+- Embedding Layer → BiLSTM → Dropout → Dense (Softmax)
+- Trained on GoEmotions dataset
+- Selected Emotions:
+  - Anger
+  - Fear
+  - Joy
+  - Neutral
+  - Sadness
+
+---
+
+## 📂 Repository Structure
+media-emotion-analysis/
+│
+├── app.py
+├── Dockerfile
+├── requirements.txt
+├── best_emotion_bilstm_model.h5
+├── tokenizer.pkl
+├── label_encoder.pkl
+│
+├── templates/
+├── static/
+│
+└── Media_Emotion_Analysis_Geopolitical_News.ipynb
+
+---
+
+## 📈 Features
+
+✔ Real-time emotion prediction  
+✔ Sentence-level emotional breakdown  
+✔ Aggregated emotion visualization  
+✔ Emotional progression graph  
+✔ Cloud-deployed interactive dashboard  
+
+---
+
+## 🧪 Dataset
+
+- GoEmotions dataset used for training
+- Custom curated geopolitical news dataset for analysis
+- Processed and trained using Google Colab
+
+---
+
+## 🚀 Deployment
+
+The application is containerized using Docker and deployed on HuggingFace Spaces for cloud-based inference.
+
+Live App:
+https://rajeshreddi-media-analysis.hf.space
+
+---
+
+## 🎯 Future Improvements
+
+- Multi-label emotion classification  
+- Transformer-based models (BERT / RoBERTa)  
+- Comparative media bias analysis  
+- API-based deployment  
+
+---
+
+## 👨‍💻 Author
+
 **Rajesh Reddy**  
-📧 Email: rajesh.reddi06@gmail.com  
-🌐 GitHub: https://github.com/RajeshReddi
-
-
+📧 rajesh.reddi06@gmail.com  
+🌐 https://github.com/RajeshReddi
