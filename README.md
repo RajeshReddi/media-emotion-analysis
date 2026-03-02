@@ -96,9 +96,6 @@ media-emotion-analysis/
 ├── static/
 │
 └── Media_Emotion_Analysis_Geopolitical_News.ipynb
-
----
-
 ## 📈 Features
 
 ✔ Real-time emotion prediction  
