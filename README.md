@@ -80,7 +80,7 @@ This project aims to:
   - Neutral
   - Sadness
 
----
+
 
 ## 📂 Repository Structure
 media-emotion-analysis/
