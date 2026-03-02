@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Media Emotion Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c1c1c);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            color: white;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            background: linear-gradient(90deg, #ff512f, #dd2476, #00c6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+            margin-bottom: 50px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            border-radius: 20px;
+            border: none;
+            padding: 20px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 40px;
+            font-size: 17px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #ff512f, #dd2476);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 30px rgba(255, 81, 47, 0.8);
+        }
+
+        .dominant {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffcc00;
+        }
+
+        h2 {
+            margin-top: 50px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 25px;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        td:first-child {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Media Emotion Intelligence</h1>
+
+        <div class="card">
+            <form method="POST">
+                <textarea name="news_text" placeholder="Paste geopolitical news article here..." required></textarea>
+                <button type="submit">Analyze Emotion</button>
+            </form>
+        </div>
+
+        {% if result %}
+        <div class="card">
+
+            <div class="dominant">
+                Dominant Emotion: {{ dominant|upper }}
+            </div>
+
+            <!-- Article-Level Chart -->
+            <canvas id="articleChart"></canvas>
+
+            <script>
+                const articleLabels = {{ result.keys() | list | tojson }};
+                const articleValues = {{ result.values() | list | tojson }};
+
+                new Chart(document.getElementById('articleChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: articleLabels,
+                        datasets: [{
+                            label: 'Article Emotion Distribution',
+                            data: articleValues,
+                            backgroundColor: [
+                                '#ff4d4d',
+                                '#ffa500',
+                                '#4caf50',
+                                '#2196f3',
+                                '#9c27b0'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: "white"
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: "white" },
+                                grid: { color: "rgba(255,255,255,0.1)" }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                max: 1,
+                                ticks: { color: "white" },
+                                grid: { color: "rgba(255,255,255,0.1)" }
+                            }
+                        }
+                    }
+                });
+            </script>
+
+            <!-- Sentence-Level Table -->
+            <h2>Sentence-Level Detailed Analysis</h2>
+
+            <table>
+                <tr>
+                    <th>Sentence</th>
+                    <th>Anger</th>
+                    <th>Fear</th>
+                    <th>Joy</th>
+                    <th>Neutral</th>
+                    <th>Sadness</th>
+                </tr>
+
+                {% for row in sentence_results %}
+                <tr>
+                    <td>{{ row.sentence }}</td>
+                    <td>{{ "%.2f"|format(row.anger) }}</td>
+                    <td>{{ "%.2f"|format(row.fear) }}</td>
+                    <td>{{ "%.2f"|format(row.joy) }}</td>
+                    <td>{{ "%.2f"|format(row.neutral) }}</td>
+                    <td>{{ "%.2f"|format(row.sadness) }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <!-- Emotion Progression Line Chart -->
+            <h2>Emotion Progression Across Sentences</h2>
+            <canvas id="progressChart"></canvas>
+
+            <script>
+                const sentenceData = {{ sentence_results | tojson }};
+                const sentenceNumbers = sentenceData.map((_, index) => index + 1);
+
+                new Chart(document.getElementById('progressChart'), {
+                    type: 'line',
+                    data: {
+                        labels: sentenceNumbers,
+                        datasets: [
+                            {
+                                label: 'Anger',
+                                data: sentenceData.map(s => s.anger),
+                                borderColor: '#ff4d4d',
+                                fill: false
+                            },
+                            {
+                                label: 'Fear',
+                                data: sentenceData.map(s => s.fear),
+                                borderColor: '#ffa500',
+                                fill: false
+                            },
+                            {
+                                label: 'Joy',
+                                data: sentenceData.map(s => s.joy),
+                                borderColor: '#4caf50',
+                                fill: false
+                            },
+                            {
+                                label: 'Neutral',
+                                data: sentenceData.map(s => s.neutral),
+                                borderColor: '#2196f3',
+                                fill: false
+                            },
+                            {
+                                label: 'Sadness',
+                                data: sentenceData.map(s => s.sadness),
+                                borderColor: '#9c27b0',
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: "white"
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: "white" },
+                                grid: { color: "rgba(255,255,255,0.1)" }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                max: 1,
+                                ticks: { color: "white" },
+                                grid: { color: "rgba(255,255,255,0.1)" }
+                            }
+                        }
+                    }
+                });
+            </script>
+
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
